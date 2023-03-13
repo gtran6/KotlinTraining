@@ -6,6 +6,10 @@ internal object Solution2 {
     fun isHandOfStraights(hand: IntArray, k: Int) : Boolean {
         if (hand.size % k != 0) return false
 
+        //A TreeMap is a data structure that stores key-value pairs in a sorted order based on the keys.
+        // In this case, the keys are the card values, and the values are the counts of each card in the hand.
+        // By using a TreeMap, we can easily iterate through the keys in ascending order, which allows us to
+        // check for consecutive cards efficiently.
         val count = TreeMap<Int, Int>()
         for (card in hand) {
             count[card] = count.getOrDefault(card, 0) + 1
@@ -17,6 +21,8 @@ internal object Solution2 {
             for (card in startCard until startCard+k) {
                 // get the count of the current card from the 'count' map, or returns a default value of 0 if card is not present in the map
                 val currentCount = count.getOrDefault(card, 0)
+                // check the value of count to ensure that the current card is present in the cardCounts map and has a count greater than zero,
+                // which is necessary to determine whether the current card is part of a group of consecutive cards or not.
                 if (currentCount == 0) return false
                 //If the currentCount of the current card is 1, this means that it is the last instance of this card in the current group.
                 // In this case, we can remove the card from 'count', since it has been fully grouped into a set of consecutive cards.
