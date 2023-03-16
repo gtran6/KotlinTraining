@@ -65,8 +65,12 @@ internal object Solution6 {
         }
         // The first ancestor of b which appears in
         // a's ancestor set() is their lowest common ancestor.
+        // The loop condition !ancestors.contains(b) checks whether b is an ancestor of a.
+        // If b is already an ancestor of a, then b is the lowest common ancestor, and we can return its value.
+        // If b is not an ancestor of a, we update b to its parent using the parent[b] lookup and repeat the
+        // loop until we find the lowest common ancestor.
         while (!ancestors.contains(b)) b = parent[b]
-        return b!!.`val`
+        return b!!.`val` // After this iteration, we have found the lowest common ancestor of two nodes
     }
 }
 fun main() {
@@ -90,3 +94,30 @@ fun main() {
     print("\"" + lca + "\"" + " is the lowest common ancestor of the nodes " + "\"" + a.`val` + "\"" + " and " + "\"" + b.`val` + "\"")
 }
 
+/* Ex: find LCA of 4 and 5
+        1
+       / \
+      2   3
+     / \   \
+    4   5   6
+
+parent = {1: null, 2: 1, 3: 1, 4: 2, 5: 2}
+
+a = 4
+ancestors = {}
+add 4 to ancestors
+a = parent[a] = 2
+add 2 to ancestors
+a = parent[a] = 1
+add 1 to ancestors
+a = parent[a] = null
+stop
+
+ancestors = {4, 2, 1}
+b = 5
+ancestors does not contain b
+b = parent[b] = 2
+ancestors contains b, so 2 is the LCA
+
+-> LCA of 4 and 5 is 2
+ */
