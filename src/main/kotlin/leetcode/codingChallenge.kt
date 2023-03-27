@@ -1,25 +1,5 @@
-package Collections
+package leetcode
 
-// Map is a set of key-value pairs, designed to make it easy to look up a value given a particular key.
-// Keys are unique, and each key maps to exactly one value, but the values can have duplicates.
-// Values in a map can be strings, numbers, or objects—even another collection like a list or a set.
-// A map is useful when you have pairs of data, and you can identify each pair based on its key. The key "maps to" the corresponding value.
-//fun main() {
-//    val peopleAges = mutableMapOf<String, Int>("Fred" to 30, "Ann" to 23)
-//    peopleAges.put("Barbara", 42)
-//    peopleAges["Joe"] = 51
-//    peopleAges["Joe"] = 54
-//    //println(peopleAges)
-//
-//    // "forEach" is similar to the for loop, but a little more compact.
-//    // Instead of you specifying a variable for the current item, the forEach uses the special identifier it.
-//    peopleAges.forEach {
-//        //println(it.key + " is " + it.value)
-//        println("${it.key} is ${it.value}")
-//    }
-//
-//    println(peopleAges.map { "${it.key} is ${it.value}" }.joinToString(", "))
-// }
 /* Overview:
  Write a program, in Kotlin, that will display an ASCII chart given the following data
  data = {(1,2), (2, 3), (3, 1), (4, 6), (5, 8)}.
@@ -51,7 +31,7 @@ package Collections
    max y = 8
    data = {(1,2), (2, 3), (3, 1), (4, 6), (5, 8)}
  To execute Kotlin code, please define a top level function named main*/
-fun main(){
+fun main() {
     val data = arrayOf(
         Pair(1,2),
         Pair(2,3),
@@ -61,13 +41,25 @@ fun main(){
     )
     val maxX = 5
     val maxY = 8
-    println("+-----+-----+-----+-----+-----+-----+")
-    for (x in 1..maxX) {
-        for (y in maxY downTo 1) {
-            if (data.contains(Pair(x,y)))
-                println("*")
-            else
-                println("-")
+
+    for (y in maxY downTo 1) {
+        println("+")
+        for (x in 1..maxX) {
+            if (data.contains(Pair(x,y))) {
+                println("   *   +")
+            } else {
+                println("       +")
+            }
         }
+        println()
+        println("+")
+        for (x in 1..maxX) {
+            if (y == 1) {
+                println("-----+-----")
+            } else {
+                println("       +")
+            }
+        }
+        println()
     }
 }

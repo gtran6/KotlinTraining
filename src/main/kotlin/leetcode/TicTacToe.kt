@@ -32,7 +32,15 @@ class TicTacToe(n: Int) {
 }
 
 fun main() {
-    val input = arrayOf(intArrayOf(3),intArrayOf(0,0,1),intArrayOf(0,2,2),intArrayOf(2,2,1),intArrayOf(1,1,2),intArrayOf(2,0,1),intArrayOf(1,0,2),intArrayOf(2,1,1))
+    val input = arrayOf(
+        intArrayOf(3),
+        intArrayOf(0,0,1),
+        intArrayOf(0,2,2),
+        intArrayOf(2,2,1),
+        intArrayOf(1,1,2),
+        intArrayOf(2,0,1),
+        intArrayOf(1,0,2),
+        intArrayOf(2,1,1))
     val ticTacToe = TicTacToe(input[0][0])
     var win:Int
     for (i in 1 until input.size) {
