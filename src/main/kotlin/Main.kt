@@ -1,3 +1,7 @@
+
+import java.lang.NumberFormatException
+import kotlin.Exception
+
 fun main() {
     /*    val string = "Giang Tran"
     println("our string is ${string.toUpperCase().trim().split(" ").reversed().joinToString(" ")}")
@@ -196,9 +200,57 @@ fun main() {
     val maxAreaRectCircle = maxArea(rect, circle)
     val max = maxArea(rect, circle, triangle)*/
 
-    val circle = Circle.randomCircle()
+/*    val circle = Circle.randomCircle()
     println()
-    val rectangle = Rectangle.randomRectangle()
+    val rectangle = Rectangle.randomRectangle()*/
+
+/*    val a = 3.0
+    val b = 4.0
+    val height = 2.0
+    val parallelogram = object : Shape("parallelogram", a, b, height) {
+        init {
+            println("$name created with a = $a, b = $b and height = $height")
+            println("$name area is ${area()}")
+            println("$name perimeter is ${perimeter()}")
+        }
+
+        override fun area(): Double {
+            return a*height
+        }
+
+        override fun perimeter(): Double {
+            return 2*a + 2*b
+        }
+        fun isRectangle() : Boolean = height == b
+    }
+    println("is the parallelogram a rectangle? ${parallelogram.isRectangle()}")*/
+
+/*    println("please enter a number")
+    val input = try {
+        readLine()?.toInt()
+    } catch (e: NumberFormatException) {
+        0
+    } finally {
+        println("this is from the finally block")
+    }
+    println("you entered: $input")
+
+    val division = try {
+        divide(5.0, 0.0)
+    } catch (e: DivisionByZeroException) {
+        0.0
+    }
+    println("${division}")*/
+
+
+}
+
+class DivisionByZeroException : Exception("you cannot divide by zero, choose different number")
+
+fun divide(a: Double, b: Double) : Double {
+    if (b == 0.0)
+        throw DivisionByZeroException()
+    return a/b
 }
 
 // overloading
