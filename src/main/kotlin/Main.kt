@@ -173,7 +173,44 @@ fun main() {
     val myCircle1 = Circle(5.0)
     val myCircle2 = Circle(7.0)*/
 
-    val myTriangle = Triangle(2.0, 4.0, 6.0)
+    //val myTriangle = Triangle(3.0, 3.0, 4.0)
+
+/*    val myCircle1 = Circle(5.0)
+    myCircle1.changeName("Round circle")
+    println(myCircle1.name)
+    println()
+
+    val myTriangle = Triangle(2.0, 4.0, 4.0)
+    myTriangle.changeName("My triangle")
+    println(myTriangle.name)
+    println()
+
+    val myRectangle = Rectangle(4.0, 5.0)
+    myRectangle.changeName("my rectangle")
+    println(myRectangle.name)*/
+
+/*    val rect = Rectangle(45.0)
+    val circle = Circle(3.0)
+    val triangle = Triangle(7.0, 7.0, 7.0)
+
+    val maxAreaRectCircle = maxArea(rect, circle)
+    val max = maxArea(rect, circle, triangle)*/
+
+    val circle = Circle.randomCircle()
+    println()
+    val rectangle = Rectangle.randomRectangle()
+}
+
+// overloading
+fun maxArea(shape1: Shape, shape2: Shape) : Double {
+    val areaShape1 = shape1.area()
+    val areaShape2 = shape2.area()
+    return if (areaShape1 > areaShape2) areaShape1 else areaShape2
+}
+fun maxArea(shape1: Shape, shape2: Shape, shape3: Shape) : Double {
+    val maxAreaShape1Shape2 = maxArea(shape1, shape2)
+    val areShape3 = shape3.area()
+    return if (maxAreaShape1Shape2 > areShape3) maxAreaShape1Shape2 else areShape3
 }
 
 fun List<Int>.productOfList() : Int {
