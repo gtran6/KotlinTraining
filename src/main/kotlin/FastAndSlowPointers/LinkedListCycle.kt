@@ -1,5 +1,15 @@
 package FastAndSlowPointers
+/*
+We initialize two pointers, fast and slow, which point to the head of the linked list.
 
+We traverse the linked list using these two pointers. They move in the following way:
+
+The slow pointer moves only one node forward in each iteration.
+The fast pointer moves two nodes forward in each iteration; that is, it skips a node.
+If the fast pointer becomes NULL, we have reached the end of the linked list. No cycle exists, return FALSE.
+
+If both slow and fast pointers become equal to each other, a cycle exists in the linked list, and return TRUE.
+ */
 fun detectCycle(head: ListNode?) : Boolean {
     if (head == null) return false
     // initialize both slow and fast pointers to the head of the linked list
