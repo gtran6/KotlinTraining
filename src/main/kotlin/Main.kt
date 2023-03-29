@@ -200,9 +200,9 @@ fun main() {
     val maxAreaRectCircle = maxArea(rect, circle)
     val max = maxArea(rect, circle, triangle)*/
 
-/*    val circle = Circle.randomCircle()
+    val circle = Circle.randomCircle()
     println()
-    val rectangle = Rectangle.randomRectangle()*/
+    val rectangle = Rectangle.randomRectangle()
 
 /*    val a = 3.0
     val b = 4.0
