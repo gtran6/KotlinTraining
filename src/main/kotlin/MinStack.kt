@@ -1,13 +1,15 @@
+import java.util.*
+
 class MinStack {
-    val minStack = mutableListOf<Int>()
-    val stack = mutableListOf<Int>()
+    val minStack = LinkedList<Int>()
+    val stack = LinkedList<Int>()
 
     fun push(x: Int) {
         stack.add(x)
         if (minStack.isEmpty() || x <= minStack.last())
             minStack.add(x)
     }
-    fun pop(x: Int) {
+    fun pop() {
         if (stack.isNotEmpty()) {
             val last = stack.removeLast()
             if (last == minStack.last())
