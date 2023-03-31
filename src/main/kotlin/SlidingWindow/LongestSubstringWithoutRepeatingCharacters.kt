@@ -5,24 +5,24 @@ fun findLongestSubstring(s: String) : Int {
     var max = 1
     var start = 0
     val map = mutableMapOf<Char, Int>()
-    var i = 0
+    var end = 0
 
-    while (i < s.length) {
-        val char = s[i]
+    while (end < s.length) {
+        val char = s[end]
         val prevIndex = map[char]
 
         if (prevIndex != null && prevIndex >= start) {
-            val maxLen = i - start
+            val maxLen = end - start
             if (maxLen > max) {
                 max = maxLen
             }
             start = prevIndex + 1
-        } else if (i == s.length-1) {
-            val maxLen = i - start + 1
+        } else if (end == s.length-1) {
+            val maxLen = end - start + 1
             return if (max > maxLen) max else maxLen
         }
-        map[char] = i
-        i += 1
+        map[char] = end
+        end += 1
     }
     return max
 }
