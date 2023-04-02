@@ -1,4 +1,4 @@
-package TwoPointers
+package Palindrome
 
 fun longestPalindrome(s: String): String {
     var start = 0
