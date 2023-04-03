@@ -1,7 +1,23 @@
 package SlidingWindow
 
 fun findLongestSubstring(s: String) : Int {
-    if (s.length < 2) return s.length
+    val set = HashSet<Char>()
+    var start = 0
+    var end = 0
+    var max = 0
+    //"ABCDEDCBA"
+     while (end < s.length) {
+         if (set.contains(s[end])) {
+             set.remove(s[start])
+             start++
+         } else {
+             set.add(s[end])
+             end++
+             max = max.coerceAtLeast(set.size)
+         }
+     }
+    return max
+/*    if (s.length < 2) return s.length
     var max = 1
     var start = 0
     val map = mutableMapOf<Char, Int>()
@@ -24,7 +40,7 @@ fun findLongestSubstring(s: String) : Int {
         map[char] = end
         end += 1
     }
-    return max
+    return max*/
 }
 fun main() {
     val s = "ABCDEDCBA"
