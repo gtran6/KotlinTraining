@@ -6,11 +6,11 @@ fun longestConsecutive(nums: IntArray): Int {
         if (!map.containsKey(num)) {
             val left = map.getOrDefault(num-1, 0)
             val right = map.getOrDefault(num+1, 0)
-            val len = left+right+1
-
+            val len = left + right + 1
             map[num] = len
-            map[num-left] = len
-            map[num+right] = len
+            map[num - left] = len
+            map[num + right] = len
+
             max = maxOf(max, len)
         }
     }
