@@ -1,22 +1,22 @@
 package SlidingWindow
 
 fun findLongestSubstring(s: String) : Int {
-    val set = HashSet<Char>()
     var start = 0
     var end = 0
-    var max = 0
-    //"ABCDEDCBA"
-     while (end < s.length) {
-         if (set.contains(s[end])) {
-             set.remove(s[start])
-             start++
-         } else {
-             set.add(s[end])
-             end++
-             max = max.coerceAtLeast(set.size)
-         }
-     }
-    return max
+    var maxLength = 0
+    val set = HashSet<Char>()
+
+    while (end < s.length) {
+        if (!set.contains(s[end])) {
+            set.add(s[end])
+            maxLength = maxOf(maxLength, end - start + 1)
+            end++
+        } else {
+            set.remove(s[start])
+            start++
+        }
+    }
+    return maxLength
 /*    if (s.length < 2) return s.length
     var max = 1
     var start = 0
