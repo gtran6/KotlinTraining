@@ -1,4 +1,4 @@
-package Palindrome
+package MergeIntervals
 
 fun insert(intervals: Array<IntArray>, newInterval: IntArray): Array<IntArray> {
     val result = mutableListOf<IntArray>()
