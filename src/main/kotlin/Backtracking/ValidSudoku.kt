@@ -51,7 +51,7 @@ fun isValidSudoku(board: Array<CharArray>): Boolean {
             if (!rowSet[i].add(digit)) return false
 
             //check col
-            if (!colSet[i].add(digit)) return false
+            if (!colSet[j].add(digit)) return false
 
             //check sub box
             val subBoxIndex = (i/3)*3 + (j/3)
