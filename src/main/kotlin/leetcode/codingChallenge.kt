@@ -32,7 +32,7 @@ package leetcode
    data = {(1,2), (2, 3), (3, 1), (4, 6), (5, 8)}
  To execute Kotlin code, please define a top level function named main*/
 fun main() {
-    val data = arrayOf(
+    val data = setOf(
         Pair(1,2),
         Pair(2,3),
         Pair(3,1),
@@ -41,25 +41,33 @@ fun main() {
     )
     val maxX = 5
     val maxY = 8
+    for (y in maxY downTo 1) {
+        print("+")
+        for (x in 1..maxX) {
+            print(if (data.contains(Pair(x, y))) "*" else "-")
+            print(if (x == maxX) "+\n" else "-----")
+        }
+    }
+    print("+")
+    for (x in 1..maxX) {
+        print("-")
+        print(if (x == maxX) "+\n" else "-----")
+    }
+/*    println("+-----+-----+-----+-----+-----+-----+")
 
     for (y in maxY downTo 1) {
-        println("+")
+        var line = "+"
         for (x in 1..maxX) {
-            if (data.contains(Pair(x,y))) {
-                println("   *   +")
+            if (data.contains(Pair(x, y))) {
+                line += "-----*-----"
             } else {
-                println("       +")
+                line += "-----"
             }
+            line += "-"
         }
-        println()
-        println("+")
-        for (x in 1..maxX) {
-            if (y == 1) {
-                println("-----+-----")
-            } else {
-                println("       +")
-            }
-        }
-        println()
+        println(line)
     }
+
+    // Print bottom border
+    println("+-----+-----+-----+-----+-----+-----+")*/
 }
