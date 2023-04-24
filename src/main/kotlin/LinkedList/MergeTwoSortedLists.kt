@@ -1,29 +1,21 @@
 package LinkedList
 
 fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
-    var r1 = list1
-    var r2 = list2
-    val ll = ListNode(0)
-    var rr = ll
+    var l1 = list1
+    var l2 = list2
+    val dummyHead = ListNode(0)
+    var tail = dummyHead
 
-    while (true) {
-        if (r1 == null && r2 == null) break
-        if (r1 == null) {
-            rr.next = r2
-            break
-        }
-        if (r2 == null) {
-            rr.next = r1
-            break
-        }
-        if (r1.`val` <= r2.`val`) {
-            rr.next = r1
-            r1 = r1.next
+    while (l1 != null && l2 != null) {
+        if (l1.`val` < l2.`val`) {
+            tail.next = l1
+            l1 = l1.next
         } else {
-            rr.next = r2
-            r2 = r2.next
+            tail.next = l2
+            l2 = l2.next
         }
-        rr = rr.next!!
+        tail = tail.next!!
     }
-    return  ll.next
+    tail.next = l1 ?: l2
+    return dummyHead
 }
