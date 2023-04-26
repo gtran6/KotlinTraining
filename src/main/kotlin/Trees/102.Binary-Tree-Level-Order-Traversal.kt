@@ -22,21 +22,21 @@ fun traverse(node: TreeNode?, level: Int, res: MutableList<List<Int>>) {
 fun levelOrder3(root: TreeNode?): List<List<Int>> {
     val res = mutableListOf<List<Int>>()
     if (root == null) return res
-    val stack = ArrayDeque<TreeNode>()
-    stack.add(root)
+    val queue = ArrayDeque<TreeNode>()
+    queue.add(root)
 
-    while (!stack.isEmpty()) {
+    while (!queue.isEmpty()) {
         val levelNodes = mutableListOf<Int>()
 
-        for (i in 0 until stack.size) {
-            val node = stack.removeLast()
+        for (i in 0 until queue.size) {
+            val node = queue.removeFirst()
             levelNodes.add(node.`val`)
 
             if (node.right != null) {
-                stack.add(node.right!!)
+                queue.add(node.right!!)
             }
             if (node.left != null) {
-                stack.add(node.left!!)
+                queue.add(node.left!!)
             }
         }
         res.add(levelNodes)
