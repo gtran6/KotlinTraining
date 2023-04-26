@@ -32,11 +32,12 @@ fun levelOrder3(root: TreeNode?): List<List<Int>> {
             val node = queue.removeFirst()
             levelNodes.add(node.`val`)
 
-            if (node.right != null) {
-                queue.add(node.right!!)
-            }
             if (node.left != null) {
                 queue.add(node.left!!)
+            }
+
+            if (node.right != null) {
+                queue.add(node.right!!)
             }
         }
         res.add(levelNodes)
