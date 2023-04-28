@@ -1,7 +1,16 @@
 package LinkedList
 
 fun removeElements(head: ListNode?, `val`: Int): ListNode? {
-    if (head == null) return null
-    head.next = removeElements(head.next, `val`)
-    return if (head.`val` == `val`) head.next else head
+    var dummy = ListNode(0)
+    dummy.next = head
+    var current = dummy
+
+    while (current.next != null) {
+        if (current.next!!.`val` == `val`) {
+            current.next = current.next!!.next
+        } else {
+            current = current.next!!
+        }
+    }
+    return dummy.next
 }
