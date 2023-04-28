@@ -17,5 +17,5 @@ fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
         tail = tail.next!!
     }
     tail.next = l1 ?: l2
-    return dummyHead
+    return dummyHead.next
 }
