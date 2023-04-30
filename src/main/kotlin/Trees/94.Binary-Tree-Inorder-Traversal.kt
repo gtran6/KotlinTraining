@@ -23,10 +23,12 @@ fun inorderTraversal1(root: TreeNode?): List<Int> {
             curr = curr.left
         }
         curr = stack.removeLast()
-        res.add(curr.`val`)
-        curr = curr.right
+        curr.let {
+            res.add(it.`val`)
+            curr = it.left
+        }
     }
-    return res
+    return res.reversed()
 }
 /*
 In this code, we first add the root node to the stack.
