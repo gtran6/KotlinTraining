@@ -11,8 +11,8 @@ fun mostFrequentChar(s: String) : String {
     var max = 0
     for (i in s.indices) {
         if (map[s[i]]!! > max || (map[s[i]]!! == max && s[i] < mostFreqChar)) {
-            max = map[s[i]]!!
             mostFreqChar = s[i]
+            max = map[s[i]]!!
         }
     }
     return mostFreqChar.toString()
