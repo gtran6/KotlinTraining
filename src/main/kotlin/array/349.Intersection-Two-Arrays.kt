@@ -1,7 +1,18 @@
 package array
 
 fun intersection(nums1: IntArray, nums2: IntArray): IntArray {
-    val list1 = nums1.toMutableList()
+    val list1 = nums1.toSet()
+    val list2 = nums2.toSet()
+    val res = mutableSetOf<Int>()
+
+    for (num in list1) {
+        if (list2.contains(num)) {
+            res.add(num)
+        }
+    }
+    return res.toIntArray()
+
+/*    val list1 = nums1.toMutableList()
     val list2 = nums2.toMutableList()
     val res = mutableSetOf<Int>()
     for (num in nums1) {
@@ -10,7 +21,7 @@ fun intersection(nums1: IntArray, nums2: IntArray): IntArray {
             list2.remove(num)
         }
     }
-    return res.toIntArray()
+    return res.toIntArray()*/
 }
 fun main() {
     val nums1 = intArrayOf(4,9,5)
