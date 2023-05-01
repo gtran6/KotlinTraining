@@ -32,5 +32,5 @@ fun intersect(nums1: IntArray, nums2: IntArray): IntArray {
 fun main() {
     val nums1 = intArrayOf(1,1,2,2)
     val nums2 = intArrayOf(2,2)
-    println(intersect(nums1, nums2))
+    println(intersect(nums1, nums2).contentToString())
 }
