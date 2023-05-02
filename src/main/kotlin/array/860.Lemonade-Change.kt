@@ -8,6 +8,8 @@ fun lemonadeChange(bills: IntArray): Boolean {
         if (bill == 5) {
             five++
         } else if (bill == 10) {
+            if (five == 0) return false
+            five--
             ten++
         } else {
             if (five > 0 && ten > 0) {
