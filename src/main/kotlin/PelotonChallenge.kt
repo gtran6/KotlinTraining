@@ -1,52 +1,32 @@
-fun timeInHeartRateZonesForWorkout(
-    timesAndBeats: Array<Pair<Int, Int>>,
-    maxHeartRate: Int,
-    duration: Int
-): Array<Int> {
-    val heartRateZones = listOf(
+fun timeInHeartRateZonesForWorkout(pairs: Array<Pair<Int, Int>>, maxHeartRate: Int, workoutDuration: Int): Array<Int> {
+    // Calculate heart rate zones
+    val zones = listOf(
         Pair((0.0 * maxHeartRate).toInt(), (0.6 * maxHeartRate).toInt()),
         Pair((0.6 * maxHeartRate).toInt(), (0.75 * maxHeartRate).toInt()),
         Pair((0.75 * maxHeartRate).toInt(), (0.85 * maxHeartRate).toInt()),
         Pair((0.85 * maxHeartRate).toInt(), (1.0 * maxHeartRate).toInt())
     )
 
-    var peakTime = 0
-    var cardioTime = 0
-    var fatburnTime = 0
-    var warmupTime = 0
+    // Initialize time spent in each zone to 0
+    val timeInZones = Array(4) { 0 }
 
-    var prevTime = 0
-    var prevBpm = timesAndBeats[0].second
+    // Calculate time spent in each zone
+    for (i in 1 until pairs.size) {
+        val timeInZone = pairs[i].first - pairs[i - 1].first
+        val avgHeartRate = (pairs[i].second + pairs[i - 1].second) / 2
 
-    for (i in 1 until timesAndBeats.size) {
-        val time = timesAndBeats[i].first
-        val bpm = timesAndBeats[i].second
-
-        val interval = time - prevTime
-        val prevZone = heartRateZones.lastOrNull { bpm >= it.first } ?: heartRateZones.first()
-
-        when (prevZone) {
-            heartRateZones[0] -> warmupTime += interval
-            heartRateZones[1] -> fatburnTime += interval
-            heartRateZones[2] -> cardioTime += interval
-            heartRateZones[3] -> peakTime += interval
+        for (j in zones.indices) {
+            if (avgHeartRate > zones[j].first && avgHeartRate <= zones[j].second) {
+                timeInZones[j] += timeInZone
+                break
+            }
         }
-
-        prevTime = time
-        prevBpm = bpm
     }
 
-    val finalInterval = duration - prevTime
-    val finalZone = heartRateZones.lastOrNull { prevBpm >= it.first } ?: heartRateZones.first()
+    // Calculate time spent in warm up zone
+    timeInZones[3] += workoutDuration - pairs[pairs.size - 1].first
 
-    when (finalZone) {
-        heartRateZones[0] -> warmupTime += finalInterval
-        heartRateZones[1] -> fatburnTime += finalInterval
-        heartRateZones[2] -> cardioTime += finalInterval
-        heartRateZones[3] -> peakTime += finalInterval
-    }
-
-    return arrayOf(peakTime, cardioTime, fatburnTime, warmupTime)
+    return timeInZones
 }
 
 fun main() {
@@ -63,3 +43,4 @@ fun main() {
     val duration = 500
     println(timeInHeartRateZonesForWorkout(timesAndBeats, maxHeartRate, duration).contentDeepToString())
 }
+// [100,200,40,160]
