@@ -1,32 +1,45 @@
-fun timeInHeartRateZonesForWorkout(pairs: Array<Pair<Int, Int>>, maxHeartRate: Int, workoutDuration: Int): Array<Int> {
-    // Calculate heart rate zones
-    val zones = listOf(
+fun timeInHeartRateZonesForWorkout(
+    timesAndBeats: Array<Pair<Int, Int>>,
+    maxHeartRate: Int,
+    duration: Int
+): Array<Int> {
+    val heartRateZones = listOf(
         Pair((0.0 * maxHeartRate).toInt(), (0.6 * maxHeartRate).toInt()),
         Pair((0.6 * maxHeartRate).toInt(), (0.75 * maxHeartRate).toInt()),
         Pair((0.75 * maxHeartRate).toInt(), (0.85 * maxHeartRate).toInt()),
         Pair((0.85 * maxHeartRate).toInt(), (1.0 * maxHeartRate).toInt())
     )
 
-    // Initialize time spent in each zone to 0
-    val timeInZones = Array(4) { 0 }
+    val zoneDurations = IntArray(4)
 
-    // Calculate time spent in each zone
-    for (i in 1 until pairs.size) {
-        val timeInZone = pairs[i].first - pairs[i - 1].first
-        val avgHeartRate = (pairs[i].second + pairs[i - 1].second) / 2
+    var prevTime = 0
+    var prevBpm = timesAndBeats[0].second
 
-        for (j in zones.indices) {
-            if (avgHeartRate > zones[j].first && avgHeartRate <= zones[j].second) {
-                timeInZones[j] += timeInZone
-                break
-            }
+    for (i in 1 until timesAndBeats.size) {
+        val time = timesAndBeats[i].first
+        val bpm = timesAndBeats[i].second
+
+        val interval = time - prevTime
+        val prevZone = heartRateZones.lastOrNull { bpm >= it.first } ?: heartRateZones.first()
+
+        val zoneIndex = heartRateZones.indexOf(prevZone)
+        if (zoneIndex >= 0) {
+            zoneDurations[zoneIndex] += interval
         }
+
+        prevTime = time
+        prevBpm = bpm
     }
 
-    // Calculate time spent in warm up zone
-    timeInZones[3] += workoutDuration - pairs[pairs.size - 1].first
+    val finalInterval = duration - prevTime
+    val finalZone = heartRateZones.lastOrNull { prevBpm >= it.first } ?: heartRateZones.first()
 
-    return timeInZones
+    val finalZoneIndex = heartRateZones.indexOf(finalZone)
+    if (finalZoneIndex >= 0) {
+        zoneDurations[finalZoneIndex] += finalInterval
+    }
+
+    return zoneDurations.toTypedArray().reversedArray()
 }
 
 fun main() {
