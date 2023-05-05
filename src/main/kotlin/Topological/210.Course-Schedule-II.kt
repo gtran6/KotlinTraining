@@ -2,28 +2,30 @@ package Topological
 
 import java.util.*
 
-fun canFinish(numCourses: Int, prerequisites: Array<IntArray>): Boolean {
+fun findOrder(numCourses: Int, prerequisites: Array<IntArray>): IntArray {
+    val res = mutableListOf<Int>()
+    if (numCourses <= 0) return res.toIntArray()
+
     val adjList = Array(numCourses) { mutableListOf<Int>() }
     val inDegree = IntArray(numCourses)
 
-    for (preReq in prerequisites) {
-        val course = preReq[0]
-        val preReqCourse = preReq[1]
+    for (p in prerequisites) {
+        val course = p[0]
+        val preReqCourse = p[1]
         adjList[preReqCourse].add(course)
         inDegree[course]++
     }
 
     val queue: Queue<Int> = LinkedList()
-    for (course in 0 until numCourses) {
-        if (inDegree[course] == 0) {
-            queue.add(course)
+    for (i in 0 until numCourses) {
+        if (inDegree[i] == 0) {
+            queue.add(i)
         }
     }
 
-    var count = 0
-    while (queue.isNotEmpty()) {
+    while (!queue.isEmpty()) {
         val course = queue.poll()
-        count++
+        res.add(course)
 
         for (neighbor in adjList[course]) {
             inDegree[neighbor]--
@@ -32,10 +34,10 @@ fun canFinish(numCourses: Int, prerequisites: Array<IntArray>): Boolean {
             }
         }
     }
-    return count == numCourses
+    return if (res.size != numCourses) emptyArray<Int>().toIntArray() else res.toIntArray()
 }
 fun main() {
     val numCourses = 4
     val prerequisites = arrayOf(intArrayOf(1,0), intArrayOf(2,0), intArrayOf(3,1), intArrayOf(3,2))
-    println(canFinish(numCourses, prerequisites))
+    println(findOrder(numCourses, prerequisites).contentToString())
 }
