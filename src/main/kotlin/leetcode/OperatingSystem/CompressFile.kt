@@ -6,7 +6,7 @@ import kotlin.collections.HashSet
 
 fun identifyConcatenations(words: Array<String>): List<String> {
     val res: MutableList<String> = ArrayList()
-    val wordSet: HashSet<String> = HashSet()
+    val wordSet = HashSet(mutableListOf(*words))
     val cache = HashMap<String, Boolean>()
 
     for (word in words) {
