@@ -1,13 +1,12 @@
 package leetcode.OperatingSystem
 
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.collections.HashSet
 
 fun identifyConcatenations(words: Array<String>): List<String> {
     val res: MutableList<String> = ArrayList()
-    val wordSet = HashSet(mutableListOf(words))
+    val wordSet: HashSet<String> = HashSet()
     val cache = HashMap<String, Boolean>()
 
     for (word in words) {
