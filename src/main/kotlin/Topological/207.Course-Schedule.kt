@@ -1,6 +1,5 @@
 package Topological
 
-import DataStructures.LinkedList
 import java.util.*
 
 fun canFinish(numCourses: Int, prerequisites: Array<IntArray>): Boolean {
