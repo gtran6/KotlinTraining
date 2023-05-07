@@ -12,7 +12,7 @@ fun timeInHeartRateZonesForWorkout(workout: Array<Pair<Int, Int>>, maxHeartRate:
         val (currTime, currBpm) = workout[i]
         val elapsedTime = currTime - prevTime
         val avgBpm = (prevBpm + currBpm) / 2.0
-        val percentMax = (avgBpm / maxHeartRate) * 100.0
+        val percentMax = (avgBpm / maxHeartRate) * 100
 
         for (j in zones.indices) {
             val (minPercent, maxPercent) = zones[j]
@@ -39,4 +39,5 @@ fun main() {
     val result = timeInHeartRateZonesForWorkout(workout, maxHeartRate)
     println(result.toList())
 }
+
 // [100,200,40,160]
