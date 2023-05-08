@@ -18,6 +18,6 @@ fun twoSum2(numbers: IntArray, target: Int): IntArray {
 }
 fun main() {
     val numbers = intArrayOf(-1,0,1,2)
-    val target = -1
+    val target = 3
     println(twoSum2(numbers, target).contentToString())
 }
