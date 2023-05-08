@@ -11,6 +11,7 @@ fun checkInclusion(s1: String, s2: String): Boolean {
     s2.indices.forEach { i ->
         s2Counts[s2[i] - 'a']++
 
+        // sliding window
         if (i >= s1.length) {
             s2Counts[s2[i - s1.length] - 'a']--
         }
