@@ -1,6 +1,6 @@
-package FastAndSlowPointers
+package TwoPointers
 
-fun moveZeroes(nums: IntArray): Unit {
+fun moveZeroes1(nums: IntArray): Unit {
     var readIndex = 0
     var writeIndex = 0
      while (readIndex < nums.size) {
@@ -17,5 +17,5 @@ fun moveZeroes(nums: IntArray): Unit {
 }
 fun main() {
     val nums = intArrayOf(0,1,0,3,12)
-    println(moveZeroes(nums))
+    println(moveZeroes1(nums))
 }
