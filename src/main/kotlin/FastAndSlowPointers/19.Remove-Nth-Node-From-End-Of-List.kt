@@ -8,15 +8,18 @@ fun removeNthFromEnd(head: ListNode?, n: Int): ListNode? {
         fast = fast?.next
     }
 
+    // If the fast pointer is null, this means that the node to be removed is the head node itself.
     if (fast == null) {
         return head?.next
     }
 
+    // the fast and slow pointers are moved together until the fast pointer reaches the end of the list.
     while (fast?.next != null) {
         fast = fast?.next
         slow = slow?.next
     }
 
+    // Once the fast pointer reaches the end of the list, the slow pointer points to the node that needs to be removed.
     slow?.next = slow?.next?.next
     return head
 }
