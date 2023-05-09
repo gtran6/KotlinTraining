@@ -3,52 +3,42 @@ package dfs
 import kotlin.math.min
 
 fun updateMatrix(mat: Array<IntArray>): Array<IntArray> {
-    val rows = mat.size
-    val cols = mat[0].size
-
-    val distance = Array(rows) { IntArray(cols) { Int.MAX_VALUE } }
-
-    // Initialize distances for cells with value 0
-    for (i in 0 until rows) {
-        for (j in 0 until cols) {
-            if (mat[i][j] == 0) {
-                distance[i][j] = 0
-            }
+    val dir = intArrayOf(1,0,-1,0,1)
+    val m = mat.size-1
+    val n = mat[0].size-1
+    val deck = ArrayDeque<IntArray>()
+    for (r in 0..m){
+        for(c in 0..n){
+            if(mat[r][c] == 0) deck.add(intArrayOf(r,c))
+            else mat[r][c] = -1
         }
     }
 
-    // Compute distances from cells with value 0 to other cells
-    for (i in 0 until rows) {
-        for (j in 0 until cols) {
-            if (mat[i][j] == 0) {
-                continue
-            }
-            if (i > 0) {
-                distance[i][j] = min(distance[i][j], distance[i-1][j] + 1)
-            }
-            if (j > 0) {
-                distance[i][j] = min(distance[i][j], distance[i][j-1] + 1)
-            }
+    while (!deck.isEmpty()){
+        val curr = deck.removeFirst()
+        for (i in 0..3){
+            val y = curr[0]+dir[i]
+            val x = curr[1]+dir[i+1]
+            if( x !in 0..n || y !in 0..m || mat[y][x] != -1) continue
+            mat[y][x] = mat[curr[0]][curr[1]]+1
+            deck.addLast(intArrayOf(y,x))
         }
     }
-
-    // Compute distances from cells with value 0 to other cells (in reverse order)
-    for (i in rows - 1 downTo 0) {
-        for (j in cols - 1 downTo 0) {
-            if (mat[i][j] == 0) {
-                continue
-            }
-            if (i < rows - 1) {
-                distance[i][j] = min(distance[i][j], distance[i+1][j] + 1)
-            }
-            if (j < cols - 1) {
-                distance[i][j] = min(distance[i][j], distance[i][j+1] + 1)
-            }
-        }
-    }
-    return distance
+    return mat
 }
+
 fun main() {
-    val mat = arrayOf(intArrayOf(0,0,0), intArrayOf(0,1,0), intArrayOf(1,1,1))
+    val mat = arrayOf(
+        intArrayOf(1,1,0,0,1,0,0,1,1,0),
+        intArrayOf(1,0,0,1,0,1,1,1,1,1),
+        intArrayOf(1,1,1,0,0,1,1,1,1,0),
+        intArrayOf(0,1,1,1,0,1,1,1,1,1),
+        intArrayOf(0,0,1,1,1,1,1,1,1,0),
+        intArrayOf(1,1,1,1,1,1,0,1,1,1),
+        intArrayOf(0,1,1,1,1,1,1,0,0,1),
+        intArrayOf(1,1,1,1,1,0,0,1,1,1),
+        intArrayOf(0,1,0,1,1,0,1,1,1,1),
+        intArrayOf(1,1,1,0,1,0,1,1,1,1)
+    )
     println(updateMatrix(mat).contentDeepToString())
 }
