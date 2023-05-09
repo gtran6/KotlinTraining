@@ -30,3 +30,13 @@ fun mergeKLists(lists: Array<ListNode?>): ListNode? {
     //return the next field of the dummy node as the head of the merged linked list.
     return dummy.next
 }
+/*
+
+The time complexity for our solution is O(N log K) where N - is a total number of nodes in all lists where K -
+is a number of sorted linked lists we have.
+
+The space complexity for our solution is O(N) where N - is total number of nodes to create an answer plus O(K)
+where K - is number of sorted linked lists we have. According to the big O notation we can omit O(K) because it
+could be equal or less than O(N) in terms of a number of elements.
+
+ */
