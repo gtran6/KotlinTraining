@@ -4,7 +4,6 @@ fun topKFrequent(nums: IntArray, k: Int): IntArray {
     val res = mutableListOf<Int>()
     val map = mutableMapOf<Int, Int>()
     val freq = MutableList<MutableList<Int>>(nums.size + 1) { mutableListOf() }
-
     nums.forEach { num ->
         map[num] = map.getOrDefault(num, 0) + 1
     }
