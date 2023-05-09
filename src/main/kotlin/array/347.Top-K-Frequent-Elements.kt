@@ -28,3 +28,20 @@ fun main() {
     val k = 2
     println(topKFrequent(nums, k).contentToString())
 }
+/*
+
+Input: nums = [1,1,1,2,2,3], k = 2
+
+1. res = [], count = {}, freq = [[], [], [], [], [], [], []]
+
+2. res = [], count = {1:3, 2:2, 3:1}, freq = [[], [3], [2], [1], [], [], []]
+
+3. Iterate over freq starting from the end:
+   - freq[6] is empty, skip
+   - freq[5] is empty, skip
+   - freq[4] is empty, skip
+   - freq[3] has [1], add 1 to res
+   - freq[2] has [2], add 2 to res
+   - res has size k, return [1, 2]
+
+ */
