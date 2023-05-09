@@ -1,5 +1,5 @@
 package Trees
-class TreeNode(val `val`: Int, var left: TreeNode? = null, var right: TreeNode?= null)
+class TreeNode(var `val`: Int, var left: TreeNode? = null, var right: TreeNode?= null)
 
 fun height(root: TreeNode?) : Int {
     if (root == null) return 0
