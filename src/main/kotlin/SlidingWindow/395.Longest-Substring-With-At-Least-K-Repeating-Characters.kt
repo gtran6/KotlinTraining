@@ -3,47 +3,75 @@ package SlidingWindow
 fun longestSubstring(s: String, k: Int): Int {
     var maxLength = 0
 
-    for (windowSize in s.length downTo k) {
-        var left = 0
-        var right = 0
-        val charCounts = IntArray(26)
-        var uniqueChars = 0
-        var countAtLeastK = 0
+    for (i in s.indices) {
+        val counts = IntArray(26)
+        for (j in i until s.length) {
+            val charIndex = s[j] - 'a'
+            counts[charIndex]++
 
-        while (right < s.length) {
-            if (uniqueChars <= windowSize) {
-                val charIndex = s[right] - 'a'
-                if (charCounts[charIndex] == 0) {
-                    uniqueChars++
+            var valid = true
+            for (count in counts) {
+                if (count in 1 until k) {
+                    valid = false
+                    break
                 }
-                charCounts[charIndex]++
-                if (charCounts[charIndex] == k) {
-                    countAtLeastK++
-                }
-                right++
-            } else {
-                val charIndex = s[left] - 'a'
-                if (charCounts[charIndex] == k) {
-                    countAtLeastK--
-                }
-                charCounts[charIndex]--
-                if (charCounts[charIndex] == 0) {
-                    uniqueChars--
-                }
-                left++
             }
-
-            if (uniqueChars == countAtLeastK) {
-                maxLength = maxOf(maxLength, right - left)
+            if (valid) {
+                maxLength = maxOf(maxLength, j-i+1)
             }
         }
     }
-
     return maxLength
 }
 
+fun longestSubstring1(s: String, k: Int): Int {
+    if (k < 1) return s.length
+
+    var max = 0
+
+    for (uniqueTarget in 1..256) {
+        val map = IntArray(256)
+        var uniqueCnt = 0
+        var atLeastK = 0
+        var l = 0
+
+        for (r in s.indices) {
+            val c = s[r].toInt()
+
+            if (map[c] == 0) {
+                uniqueCnt++
+            }
+
+            map[c]++
+
+            if (map[c] == k) {
+                atLeastK++
+            }
+
+            while (uniqueCnt > uniqueTarget) {
+                val z = s[l].toInt()
+
+                if (map[z] == k) {
+                    atLeastK--
+                }
+                map[z]--
+
+                if (map[z] == 0) {
+                    uniqueCnt--
+                }
+                l++
+            }
+
+            if (uniqueCnt == uniqueTarget && atLeastK == uniqueTarget) {
+                max = maxOf(max, r - l + 1);
+            }
+        }
+    }
+    return max
+}
+
 fun main() {
-    val s = "aaabb"
+    val s = "bbaaacbd"
     val k = 3
-    println(longestSubstring(s, k)) // 3: aaa
+    println(longestSubstring(s, k))
 }
