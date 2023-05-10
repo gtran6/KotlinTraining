@@ -4,7 +4,7 @@ package Backtracking
 Given a set of non-negative integers and a value sum, the task is to check if there is a subset of the given set whose sum is equal to the given sum.
 
 Input: set[] = {5,10,12,13,15,18}, sum = 30
-Output: {{5,10,12,13}, {12,18}, {5,12,13}}
+Output: [[5, 10, 15], [5, 12, 13], [12, 18]]
 
  */
 
