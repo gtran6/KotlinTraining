@@ -31,16 +31,17 @@ package leetcode
    max y = 8
    data = {(1,2), (2, 3), (3, 1), (4, 6), (5, 8)}
  To execute Kotlin code, please define a top level function named main*/
-fun main() {
+/*fun main() {
     val data = setOf(
-        Pair(1,2),
-        Pair(2,3),
-        Pair(3,1),
-        Pair(4,6),
-        Pair(5,8)
+        Pair(1, 2),
+        Pair(2, 3),
+        Pair(3, 1),
+        Pair(4, 6),
+        Pair(5, 8)
     )
     val maxX = 5
     val maxY = 8
+
     for (y in maxY downTo 1) {
         print("+")
         for (x in 1..maxX) {
@@ -53,6 +54,7 @@ fun main() {
         print("-")
         print(if (x == maxX) "+\n" else "-----")
     }
+}*/
 /*    println("+-----+-----+-----+-----+-----+-----+")
 
     for (y in maxY downTo 1) {
@@ -70,4 +72,31 @@ fun main() {
 
     // Print bottom border
     println("+-----+-----+-----+-----+-----+-----+")*/
+
+fun main() {
+    val data = setOf(
+        Pair(1, 2),
+        Pair(2, 3),
+        Pair(3, 1),
+        Pair(4, 6),
+        Pair(5, 8)
+    )
+
+    val maxX = 5
+    val maxY = 8
+
+    for (y in maxY downTo 0) {
+        for (x in 0..maxX) {
+            val point = if (data.contains(Pair(x, y))) "*" else " "
+            print(point)
+        }
+        println()
+    }
 }
+
+
+
+
+
+
+
