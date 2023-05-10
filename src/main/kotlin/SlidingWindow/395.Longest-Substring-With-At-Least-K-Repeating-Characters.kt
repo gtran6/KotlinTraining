@@ -103,8 +103,55 @@ fun longestSubstring2(s: String, k: Int): Int {
     return max
 }
 
+fun longestSubstring4(s: String, k: Int): Int {
+    val str = s.toCharArray()
+    val countMap = IntArray(26)
+    val maxUnique = getMaxUniqueLetters(s)
+    var result = 0
+
+    for (currUnique in 1..maxUnique) {
+        countMap.fill(0)
+        var windowStart = 0
+        var windowEnd = 0
+        var idx: Int
+        var unique = 0
+        var countAtLeastK = 0
+
+        while (windowEnd < str.size) {
+            if (unique <= currUnique) {
+                idx = str[windowEnd] - 'a'
+                if (countMap[idx] == 0) unique++
+                countMap[idx]++
+                if (countMap[idx] == k) countAtLeastK++
+                windowEnd++
+            } else {
+                idx = str[windowStart] - 'a'
+                if (countMap[idx] == k) countAtLeastK--
+                countMap[idx]--
+                if (countMap[idx] == 0) unique--
+                windowStart++
+            }
+            if (unique == currUnique && unique == countAtLeastK)
+                result = maxOf(result, windowEnd - windowStart)
+        }
+    }
+    return result
+}
+
+fun getMaxUniqueLetters(s: String): Int {
+    val map = BooleanArray(26)
+    var maxUnique = 0
+    for (i in s.indices) {
+        if (!map[s[i] - 'a']) {
+            maxUnique++
+            map[s[i] - 'a'] = true
+        }
+    }
+    return maxUnique
+}
+
 fun main() {
     val s = "bbaaacbd"
     val k = 3
-    println(longestSubstring1(s, k)) // 3: aaa
+    println(longestSubstring4(s, k)) // 3: aaa
 }
