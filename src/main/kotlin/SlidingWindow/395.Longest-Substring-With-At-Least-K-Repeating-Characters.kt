@@ -1,5 +1,6 @@
 package SlidingWindow
 
+// brute force with O(n^2)
 fun longestSubstring(s: String, k: Int): Int {
     var maxLength = 0
 
@@ -24,7 +25,39 @@ fun longestSubstring(s: String, k: Int): Int {
     return maxLength
 }
 
+// divide and conquer with O(nlogn)
 fun longestSubstring1(s: String, k: Int): Int {
+    return longestSubStringUtil(s, 0, s.length, k)
+}
+
+fun longestSubStringUtil(s: String, start: Int, end: Int, k: Int): Int {
+    if (end < k) return 0
+    val count = IntArray(26)
+
+    for (i in start until end) {
+        count[s[i] - 'a']++
+    }
+
+    for (mid in start until end) {
+        if (count[s[mid] - 'a'] >= k) continue
+        var midNext = mid + 1
+
+        while (midNext < end && count[s[midNext] - 'a'] < k) {
+            midNext++
+        }
+        return maxOf(longestSubStringUtil(s, start, mid, k), longestSubStringUtil(s, midNext, end, k))
+    }
+    return end - start
+}
+
+/*
+
+- sliding window with O(n)
+The main idea is to find all the valid substrings with a different number of unique characters and track
+the maximum length. Let's look at the algorithm in detail.
+
+ */
+fun longestSubstring2(s: String, k: Int): Int {
     if (k < 1) return s.length
 
     var max = 0
@@ -73,5 +106,5 @@ fun longestSubstring1(s: String, k: Int): Int {
 fun main() {
     val s = "bbaaacbd"
     val k = 3
-    println(longestSubstring(s, k))
+    println(longestSubstring1(s, k)) // 3: aaa
 }
