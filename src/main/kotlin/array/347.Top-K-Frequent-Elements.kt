@@ -3,18 +3,21 @@ package array
 fun topKFrequent(nums: IntArray, k: Int): IntArray {
     val res = mutableListOf<Int>()
     val map = mutableMapOf<Int, Int>()
-    val freq = MutableList<MutableList<Int>>(nums.size + 1) { mutableListOf() }
+
     nums.forEach { num ->
         map[num] = map.getOrDefault(num, 0) + 1
     }
 
-    for ((num, char) in map) {
-        freq[char].add(num)
+    val freq = MutableList(nums.size + 1) { mutableListOf<Int>() }
+
+    for ((num, frequency) in map) {
+        freq[frequency].add(num)
     }
 
-    for (i in freq.size - 1 downTo  0) {
+    for (i in freq.size - 1 downTo 0) {
         for (num in freq[i]) {
             res.add(num)
+
             if (res.size == k) {
                 return res.toIntArray()
             }
