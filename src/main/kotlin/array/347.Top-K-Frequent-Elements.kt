@@ -64,10 +64,68 @@ fun topKFrequent3(nums: IntArray, k: Int): IntArray {
 
     return sorted.take(k).map { it.key }.toIntArray()
 }
+
+// QuickSelect with O(n)
+fun topKFrequent4(nums: IntArray, k: Int): IntArray {
+    val frequencyMap = HashMap<Int, Int>()
+    for (num in nums) {
+        frequencyMap[num] = frequencyMap.getOrDefault(num, 0) + 1
+    }
+
+    val uniqueElements = frequencyMap.keys.toIntArray()
+    val n = uniqueElements.size
+
+    val kthLargestFrequency = quickSelect(uniqueElements, frequencyMap, 0, n - 1, n - k)
+
+    val topKFrequentElements = mutableListOf<Int>()
+    for (num in uniqueElements) {
+        if (frequencyMap[num]!! >= kthLargestFrequency) {
+            topKFrequentElements.add(num)
+        }
+    }
+
+    return topKFrequentElements.toIntArray()
+}
+
+fun quickSelect(nums: IntArray, frequencyMap: Map<Int, Int>, left: Int, right: Int, k: Int): Int {
+    if (left == right) {
+        return frequencyMap[nums[left]]!!
+    }
+
+    val pivotIndex = partition(nums, frequencyMap, left, right)
+
+    return when {
+        pivotIndex == k -> frequencyMap[nums[pivotIndex]]!!
+        pivotIndex < k -> quickSelect(nums, frequencyMap, pivotIndex + 1, right, k)
+        else -> quickSelect(nums, frequencyMap, left, pivotIndex - 1, k)
+    }
+}
+
+fun partition(nums: IntArray, frequencyMap: Map<Int, Int>, left: Int, right: Int): Int {
+    val pivotFreq = frequencyMap[nums[right]]!!
+    var i = left
+
+    for (j in left until right) {
+        if (frequencyMap[nums[j]]!! < pivotFreq) {
+            swap(nums, i, j)
+            i++
+        }
+    }
+
+    swap(nums, i, right)
+
+    return i
+}
+
+fun swap(nums: IntArray, i: Int, j: Int) {
+    val temp = nums[i]
+    nums[i] = nums[j]
+    nums[j] = temp
+}
 fun main() {
     val nums = intArrayOf(1,1,1,2,2,3)
     val k = 2
-    println(topKFrequent3(nums, k).contentToString())
+    println(topKFrequent4(nums, k).contentToString())
 }
 /*
 
