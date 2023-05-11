@@ -36,6 +36,7 @@ fun topKFrequent2(nums: IntArray, k: Int): IntArray {
         frequencyMap[num] = frequencyMap.getOrDefault(num, 0) + 1
     }
 
+    // the less frequent element first
     val minHeap = PriorityQueue<Int> { a, b -> frequencyMap[a]!! - frequencyMap[b]!! }
 
     for (num in frequencyMap.keys) {
@@ -53,10 +54,20 @@ fun topKFrequent2(nums: IntArray, k: Int): IntArray {
 
     return topKFrequentList.toIntArray()
 }
+
+fun topKFrequent3(nums: IntArray, k: Int): IntArray {
+    val map = mutableMapOf<Int, Int>()
+    for (num in nums) {
+        map[num] = map.getOrDefault(num, 0) + 1
+    }
+    val sorted = map.entries.sortedByDescending { it.value }
+
+    return sorted.take(k).map { it.key }.toIntArray()
+}
 fun main() {
     val nums = intArrayOf(1,1,1,2,2,3)
     val k = 2
-    println(topKFrequent2(nums, k).contentToString())
+    println(topKFrequent3(nums, k).contentToString())
 }
 /*
 
