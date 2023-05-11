@@ -1,5 +1,8 @@
 package array
 
+import java.util.*
+import kotlin.collections.HashMap
+
 fun topKFrequent(nums: IntArray, k: Int): IntArray {
     val res = mutableListOf<Int>()
     val map = mutableMapOf<Int, Int>()
@@ -25,10 +28,35 @@ fun topKFrequent(nums: IntArray, k: Int): IntArray {
     }
     return intArrayOf()
 }
+
+// min-heap (PriorityQueue) with O(Nlogk)
+fun topKFrequent2(nums: IntArray, k: Int): IntArray {
+    val frequencyMap = HashMap<Int, Int>()
+    for (num in nums) {
+        frequencyMap[num] = frequencyMap.getOrDefault(num, 0) + 1
+    }
+
+    val minHeap = PriorityQueue<Int> { a, b -> frequencyMap[a]!! - frequencyMap[b]!! }
+
+    for (num in frequencyMap.keys) {
+        minHeap.offer(num)
+        if (minHeap.size > k) {
+            minHeap.poll()
+        }
+    }
+
+    val topKFrequentList = mutableListOf<Int>()
+    while (minHeap.isNotEmpty()) {
+        topKFrequentList.add(minHeap.poll())
+    }
+    topKFrequentList.reverse()
+
+    return topKFrequentList.toIntArray()
+}
 fun main() {
     val nums = intArrayOf(1,1,1,2,2,3)
     val k = 2
-    println(topKFrequent(nums, k).contentToString())
+    println(topKFrequent2(nums, k).contentToString())
 }
 /*
 
