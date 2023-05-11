@@ -7,7 +7,7 @@ fun productExceptSelf(nums: IntArray): IntArray {
     // Calculate prefix products
     nums.indices.forEach { i ->
         res.add(prefix)
-        prefix += nums[i]
+        prefix *= nums[i]
     }
 
     // Calculate suffix products and combine with prefix products
@@ -19,6 +19,6 @@ fun productExceptSelf(nums: IntArray): IntArray {
     return res.toIntArray()
 }
 fun main() {
-    val nums = intArrayOf(-1,1,0,-3,3)
+    val nums = intArrayOf(1,2,3,4)
     println(productExceptSelf(nums).contentToString())
 }
