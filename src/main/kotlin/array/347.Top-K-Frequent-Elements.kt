@@ -55,6 +55,7 @@ fun topKFrequent2(nums: IntArray, k: Int): IntArray {
     return topKFrequentList.toIntArray()
 }
 
+// brute-force with O(nlogn)
 fun topKFrequent3(nums: IntArray, k: Int): IntArray {
     val map = mutableMapOf<Int, Int>()
     for (num in nums) {
@@ -67,7 +68,7 @@ fun topKFrequent3(nums: IntArray, k: Int): IntArray {
 
 // QuickSelect with O(n)
 fun topKFrequent4(nums: IntArray, k: Int): IntArray {
-    val frequencyMap = HashMap<Int, Int>()
+    val frequencyMap = mutableMapOf<Int, Int>()
     for (num in nums) {
         frequencyMap[num] = frequencyMap.getOrDefault(num, 0) + 1
     }
@@ -87,7 +88,7 @@ fun topKFrequent4(nums: IntArray, k: Int): IntArray {
     return topKFrequentElements.toIntArray()
 }
 
-fun quickSelect(nums: IntArray, frequencyMap: Map<Int, Int>, left: Int, right: Int, k: Int): Int {
+fun quickSelect(nums: IntArray, frequencyMap: MutableMap<Int, Int>, left: Int, right: Int, k: Int): Int {
     if (left == right) {
         return frequencyMap[nums[left]]!!
     }
