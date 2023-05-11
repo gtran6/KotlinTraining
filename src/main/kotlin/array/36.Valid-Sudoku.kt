@@ -1,5 +1,5 @@
 package array
-
+// base on Contains Duplicate problem logic
 fun isValidSudoku(board: Array<CharArray>): Boolean {
     val rowSet = Array(9) { mutableSetOf<Char>() }
     val colSet = Array(9) { mutableSetOf<Char>() }
