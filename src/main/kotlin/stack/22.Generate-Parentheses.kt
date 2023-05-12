@@ -32,7 +32,7 @@ fun backtrack5(n: Int, res: MutableList<String>, open: Int, close: Int, current:
     }
 }
 fun main() {
-    val n = 3
+    val n = 4
     println(generateParenthesis(n))
 }
 
