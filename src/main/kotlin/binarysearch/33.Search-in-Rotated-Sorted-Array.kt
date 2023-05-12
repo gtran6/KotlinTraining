@@ -11,13 +11,13 @@ fun search(nums: IntArray, target: Int): Int {
         if (nums[mid] == target) {
             return mid
         }
-        if (nums[left] <= nums[mid]) {
+        if (nums[left] <= nums[mid]) { // check If the left half is sorted
             if (target >= nums[left] && target < nums[mid]) {
                 right = mid-1
             } else {
                 left = mid+1
             }
-        } else {
+        } else { // check If the right half is sorted
             if (target > nums[mid] && target <= nums[right]) {
                 left = mid+1
             } else {
