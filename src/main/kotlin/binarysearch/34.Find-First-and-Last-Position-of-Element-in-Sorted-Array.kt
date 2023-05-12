@@ -16,10 +16,10 @@ fun searchRight(nums: IntArray, target: Int): Int {
         index = left + (right - left) / 2
         if (nums[index] == target){
             ret = index
+            left = index + 1 // update the left pointer to index+1 to search the right half of the array
+        } else if (nums[index] < target) {
             left = index + 1
-        } else if (nums[index] < target) { //nums[index] < target < nums[index + 1]
-            left = index + 1
-        } else { //nums[index] > target > nums[index - 1]
+        } else {
             right = index - 1
         }
     }
@@ -37,10 +37,10 @@ fun searchLeft(nums: IntArray, target: Int): Int {
         index = left + (right - left) / 2
         if (nums[index] == target) {
             ret = index
-            right = index - 1
-        } else if(nums[index] < target) { //nums[index] < target < nums[index + 1]
+            right = index - 1 // update the right pointer to index - 1 to search for the left half of the array
+        } else if(nums[index] < target) {
             left = index + 1
-        } else { //nums[index] > target > nums[index - 1]
+        } else {
             right = index - 1
         }
     }
