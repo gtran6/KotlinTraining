@@ -1,6 +1,5 @@
 package stack
 
-import leetcode.leftmost
 import java.util.Stack
 
 // brute force T: O(n^2)
@@ -36,4 +35,17 @@ fun main() {
 }
 /*
 [1,1,0,0,1,1,0,0] -> [1,1,4,2,1,1,0,0]
+ */
+/*
+Stacks are particularly useful in solving problems that involve processing elements in a Last-In-First-Out (LIFO) order.
+Some common types of problems that can be solved using a stack-based approach include:
+
+Parentheses matching and balancing problems
+Infix, prefix, and postfix notation problems
+Backtracking problems
+Tree and graph traversal problems
+Depth-First Search (DFS) problems
+Conversion problems, such as converting a decimal number to binary or converting an infix expression to postfix notation.
+
+In general, any problem that requires tracking and manipulating a set of elements in a LIFO order can be a good candidate for a stack-based approach.
  */
