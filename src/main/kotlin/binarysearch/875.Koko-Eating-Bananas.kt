@@ -2,6 +2,8 @@ package binarysearch
 
 import kotlin.math.ceil
 
+//The implementation uses a binary search algorithm to efficiently search for the minimum eating speed within a certain range of speeds.
+// The main focus is to optimize the search for the minimum eating speed using binary search, ensuring that Koko can finish within the given time.
 fun minEatingSpeed(piles: IntArray, h: Int): Int {
     var left = 1
     var right = 1

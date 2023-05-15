@@ -12,6 +12,7 @@ fun intervalIntersection(firstList: Array<IntArray>, secondList: Array<IntArray>
         if (low <= high) {
             res.add(intArrayOf(low, high))
         }
+
         // Move to the next interval with the smallest end value
         if (firstList[i][1] < secondList[j][1]) {
             i++
