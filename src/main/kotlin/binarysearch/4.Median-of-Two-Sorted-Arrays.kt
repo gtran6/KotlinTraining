@@ -25,10 +25,16 @@ fun mergeTwoArrays(nums1: IntArray, nums2: IntArray): IntArray {
         }
     }
 
+    //This while loop handles the remaining elements in nums1 that were not processed in the previous loop.
+    // It adds the remaining elements one by one to the merged array and increments both i and k by 1 until
+    // nums1 is fully processed.
     while (i < nums1.size) {
         merge[k++] = nums1[i++]
     }
 
+    //Similarly, this while loop handles the remaining elements in nums2 that were not processed in the
+    // first loop. It adds the remaining elements one by one to the merged array and increments both
+    // j and k by 1 until nums2 is fully processed.
     while (j < nums2.size) {
         merge[k++] = nums2[j++]
     }
