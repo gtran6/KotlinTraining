@@ -6,7 +6,8 @@ fun maxArea(height: IntArray): Int {
     var max = 0
 
     while (low < high) {
-        val area = minOf(height[low], height[high])*(high - low)
+        val width = high - low
+        val area = minOf(height[low], height[high]) * width
         max = maxOf(max, area)
 
         if (height[low] < height[high]) low++
