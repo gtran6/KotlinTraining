@@ -10,12 +10,15 @@ fun build(s: String) : String {
     for (c in s) {
         if (stack.isNotEmpty() && c == '#') {
             stack.pop()
-        } else {
+        } else if (c != '#') {
             stack.push(c)
         }
     }
-    return stack.toString()
-
+    val sb = StringBuilder()
+    for (c in stack) {
+        sb.append(c)
+    }
+    return sb.toString()
 }
 
 fun backspaceCompare(s: String, t: String): Boolean {
