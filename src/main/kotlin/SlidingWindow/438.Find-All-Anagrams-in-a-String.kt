@@ -21,6 +21,7 @@ fun findAnagrams(s: String, p: String): List<Int> {
     }
     return res
 }
+
 fun main() {
     val s = "abab"
     val p = "ab"
