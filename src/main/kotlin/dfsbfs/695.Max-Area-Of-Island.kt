@@ -1,4 +1,4 @@
-package dfs
+package dfsbfs
 
 fun maxAreaOfIsland(grid: Array<IntArray>): Int {
     if (grid.isEmpty()) return 0

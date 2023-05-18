@@ -1,6 +1,4 @@
-package dfs
-
-import kotlin.math.min
+package dfsbfs
 
 fun updateMatrix(mat: Array<IntArray>): Array<IntArray> {
     val dir = intArrayOf(1,0,-1,0,1)

@@ -1,4 +1,4 @@
-package dfs
+package dfsbfs
 
 fun solve(board: Array<CharArray>): Unit {
     if (board.isEmpty()) return

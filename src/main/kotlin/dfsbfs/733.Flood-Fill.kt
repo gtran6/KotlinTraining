@@ -1,4 +1,4 @@
-package dfs
+package dfsbfs
 
 fun floodFill(image: Array<IntArray>, sr: Int, sc: Int, color: Int): Array<IntArray> {
     val currColor = image[sr][sc]
