@@ -19,3 +19,9 @@ fun main() {
     val nums = intArrayOf(1,2,3)
     println(subsets(nums))
 }
+
+/*
+[1]
+[1], [2], [1,2]
+[1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]
+ */
