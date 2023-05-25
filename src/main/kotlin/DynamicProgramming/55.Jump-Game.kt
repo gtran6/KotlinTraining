@@ -4,7 +4,7 @@ fun canJump(nums: IntArray): Boolean {
     if (nums.size == 1) return true
     var max = 0
 
-    for (i in 0 until nums.size) {
+    for (i in nums.indices) {
         if (max < i) return false
 
         max = maxOf(max, nums[i] + i)
