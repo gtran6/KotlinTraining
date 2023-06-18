@@ -25,7 +25,7 @@ fun backtrack8(digits: String, digitToLetters: Array<String>, res: MutableList<S
         return
     }
 
-    val digit = digits[index].toInt() - '0'.toInt()
+    val digit = digits[index].code - '0'.code
     val letters = digitToLetters[digit]
     for (letter in letters) {
         string.append(letter)
